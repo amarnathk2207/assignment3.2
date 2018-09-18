@@ -1,0 +1,61 @@
+1.Obtain the elements of the union between two character vectors.
+vec1 = c(rownames(mtcars[1:15,]))
+vec2 = c(rownames(mtcars[10:32,]))
+
+ans:vec12<-union(vec1, vec2) # returns all the elements of vec1 and vec2 without repeating common elements
+    vec12
+
+output:[1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" "11" "12" "13" "14" "15" "16" "17" "18" "19" "20" "21" "22"
+[23] "23" "24" "25" "26" "27" "28" "29" "30" "31" "32"
+
+
+
+2.Get those elements that are common to both vectors.
+vec1 = c(rownames(mtcars[1:15,]))
+vec2 = c(rownames(mtcars[10:32,]))
+
+ans:commonvec12<-vec1%in%vec2 # gives position of common elements
+    vec1[commonvec12] # gives elements
+
+output:[1] "10" "11" "12" "13" "14" "15"
+
+
+3. Get the difference of the elements between two character vectors.
+vec1 = c(rownames(mtcars[1:15,]))
+vec2 = c(rownames(mtcars[10:32,]))
+
+vec1[!vec1%in%vec2]# elements of vec1 which are not present in vec2
+
+ans:[1] "1" "2" "3" "4" "5" "6" "7" "8" "9"
+
+vec2[!vec2%in%vec1]# elements of vec2 which are not present in vec1
+
+ans:[1] "16" "17" "18" "19" "20" "21" "22" "23" "24" "25" "26" "27" "28" "29" "30" "31" "32"
+
+union(vec1[!vec1%in%vec2],vec2[!vec2%in%vec1])#elements which are not common in vec1 and vec2
+
+ans: [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "16" "17" "18" "19" "20" "21" "22" "23" "24" "25" "26" "27" "28"
+[23] "29" "30" "31" "32"
+
+#alternate way
+setdiff(vec1, vec2)# elements of vec1 which are not present in vec2
+setdiff(vec2,vec1)# elements of vec2 which are not present in vec1
+
+
+
+4. Test the quality of two character vectors. 
+vec1 = c(rownames(mtcars[1:15,])) 
+vec2 = c(rownames(mtcars[11:25,])) 
+
+ans:is.element(vec1,vec2)
+     [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+
+    identical(vec1,vec2)
+    [1] FALSE
+
+    setequal(vec1,vec2)
+    [1] FALSE
+
+    vec1 %in% vec2 
+     [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+    
